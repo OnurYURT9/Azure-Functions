@@ -30,3 +30,50 @@ Http Trigger ve Timer Trigger haricindeki trigger çeşitleri diğer azure servi
 <strong>host.json:</strong>  Çalışacak function'la ilgili runtime ile ilgili bilgiler tutulur.
 
 <strong>localsettings.json:</strong>  Development esnasında localde bilgiler tutulur. Canlıya cloud ortama gitmez.
+
+## HTTPTRİGGER
+
+Httptrigger ile bir function oluşturduğumuzda bize endpoint verir bu endpointe istek yaptığımızda tigger tetiklenir.
+
+Route
+
+Body Okuma
+
+QueryString Okuma
+## Authorization
+
+Anonymous: Herkes tarafından trigger'a erişebilir.
+
+Function: Function seviyesinde erişim belirleyicisi anlamına gelir.Azure portal üzerinden erişim belirleyicisi olarak kullanılacak ‘Function Key’ verilmekte ve tüm erişim bu key üzerinden gerçekleştirilmektedir.
+
+Admin: ‘Function Key’e nazaran ‘Master Key’ ile erişim sağlanmasını gerçekleştirmektedir.
+
+Function App: default key-function key
+
+En yüksek seviyede koruma admin seviyesindedir.
+## CORS(Cross Origin Resource Sharing)
+
+Kod yazdığımızda bu kodu tüketecek kaynak tarayıcı ise mutlaka cors özelliğinin ayarlanması lazım. Cors güvenliği gevşetme yöntemidir. Sadece tarayıcılar için geçerlidir. Tarayıcılar normalde kendi içerisinden dış bir kaynağa istek yapıldığında bu istediği reddederler güvenlik için. CORS ayarı yapıldığında kullanıcı tarayıcı içerisinden isteğin yapılmasına izin verdiğini belirtir. Böylece tarayıcı güvenliği esnetilmiş olur.
+## BİNDİNGS
+
+Azure functions bindings Azure functions'ları diğer azure servislerine bağlamak için kullanmamızı sağlayan özelliktir.Binding sayesinde ekstra kod yazmaksızın Azure içerisindeki birçok servise bağlantı gerçekleştirilebilmektedir. Binding sadece azure servisler ile yapılır.
+
+Input Bindings:
+
+Azure Function’ın ilgili servislere ekstradan kod yazmaksızın bağlanmasıdır. Function’ımız bu input binding üzerinden verileri okuyabilir, işleyebilir. Varsayılan binding türüdür.
+
+Output Binding:
+
+Azure Function’ın ilgili servislerden data’yı dışarıya göndermesi ve işletmesidir.
+
+Binding, compile olabilen dillerde(Java, C#) attributes/annotations gibi yapılarla gerçekleştirilirken(bunlar yine çalıştığında function.json dosyasına dönüştürülür), compile olmayan dillerde(Node.JS) ise direkt olarak ‘function.json’ dosyası üzerinden gerçekleştirilmektedir.
+
+Binding işlemi yaparken 3 tane yapıyı mutlaka belirtmemiz lazım:
+
+*Direction(in/out)
+
+*Type(table/queue/blob)
+
+*Name
+
+HttpTrigger gizli bir input bindingtir.
